@@ -2170,6 +2170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5824544623490654168}
   - component: {fileID: 7969578330381128529}
+  - component: {fileID: 4973516923911021407}
   m_Layer: 0
   m_Name: Viking
   m_TagString: Untagged
@@ -2215,6 +2216,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4973516923911021407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6602031678873535842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2919838656f4ae5865841c520eda000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7969578330381128529}
+  player: {fileID: 5961738356243538941}
 --- !u!1 &6622458733858781036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,13 +2839,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5740852108759652768}
-  - component: {fileID: 2364038276463780587}
   - component: {fileID: 3283193304008014672}
   - component: {fileID: -5268688478890856742}
-  - component: {fileID: 833217007796262731}
+  - component: {fileID: 5961738356243538941}
+  - component: {fileID: 8026041655415417231}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2851,22 +2866,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2364038276463780587
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184437484062478614}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!136 &3283193304008014672
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2877,8 +2876,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.37
-  m_Height: 2.26
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.09, z: 0}
 --- !u!114 &-5268688478890856742
@@ -2893,18 +2892,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68eebca9e5004119a8ad5a6de931013f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 833217007796262731}
-  orientation: {fileID: 5740852108759652768}
-  rb: {fileID: 2364038276463780587}
-  rotationSpeed: 90
-  walkSpeed: 7
-  groundDrag: 5
-  playerHeight: 2.26
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  maxSlopeAngle: 40
---- !u!114 &833217007796262731
+  currentDirection: {x: 0, y: 0, z: 0}
+  characterController: {fileID: 8026041655415417231}
+  speed: 5
+  mouseSens: 250
+  playerAnimator: {fileID: 4973516923911021407}
+--- !u!114 &5961738356243538941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2913,10 +2906,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8184437484062478614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7616e3b69fb41d584b522c5ca094cc3, type: 3}
+  m_Script: {fileID: 11500000, guid: ae169973f51e4a5daa366c7e51757a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7969578330381128529}
+  animator: {fileID: 4973516923911021407}
+--- !u!143 &8026041655415417231
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184437484062478614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8241901404299724174
 GameObject:
   m_ObjectHideFlags: 0
