@@ -7,10 +7,8 @@ namespace CodeBase.Infrastructure.Bootstrap
     public class RegisterInput : MonoInstaller
     {
         [SerializeField] private InputService inputService;
-        public override void InstallBindings()
-        {
+        public override void InstallBindings() => 
             BindInputService();
-        }
 
         private void BindInputService()
         {

@@ -1,17 +1,19 @@
 ﻿using CodeBase.Enemies;
+using CodeBase.Infrastructure.Logic;
 using CodeBase.Player;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure.Bootstrap
 {
-    public class BothSpawner : MonoInstaller
+    public class Spawner : MonoInstaller
     {
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject playerPrefab;
         
         [SerializeField] private GameObject prefabEnemy;
         [SerializeField] private Transform[] spawnPoints;
+        [SerializeField] private HpBar hpBar;
         public override void InstallBindings()
         {
             SpawnPlayer();
@@ -27,6 +29,7 @@ namespace CodeBase.Infrastructure.Bootstrap
                 FromInstance(player).
                 AsSingle().
                 NonLazy();
+            player.GetComponent<PlayerHealth>().hpBar = hpBar;
         }
         private void SpawnEnemies()
         {

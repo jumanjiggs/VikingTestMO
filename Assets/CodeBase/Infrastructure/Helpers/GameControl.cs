@@ -8,10 +8,8 @@ namespace CodeBase.Infrastructure.Helpers
     {
         [SerializeField] private Button playButton;
         [SerializeField] private Button exitButton;
-        private void Start()
-        {
+        private void Start() => 
             AddListeners();
-        }
 
         private void AddListeners()
         {

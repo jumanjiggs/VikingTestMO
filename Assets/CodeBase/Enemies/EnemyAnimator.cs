@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CodeBase.Enemies
 {
@@ -9,30 +8,31 @@ namespace CodeBase.Enemies
         public event Action OnAttackEnded;
         
         private static readonly int Attack = Animator.StringToHash("Attack");
+        private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly int Die = Animator.StringToHash("Die");
         private static readonly int Speed = Animator.StringToHash("Speed");
         
         public Animator anim;
 
-        public void PlayIdle()
-        {
+        public void PlayIdle() => 
             anim.SetFloat(Speed, 0f, 0.1f, Time.deltaTime);
-        }
 
-        public void PlayRun()
-        {
+        public void PlayRun() => 
             anim.SetFloat(Speed, 1f,0.1f, Time.deltaTime);
-        }
 
-        public void PlayAttack()
-        {
+        public void PlayAttack() => 
             anim.SetTrigger(Attack);
-        }
-        
+
+        public void PlayHit() => 
+            anim.SetTrigger(Hit);
+
+        public void PlayDie() => 
+            anim.SetTrigger(Die);
+
         public void ResetAttack()
         {
             PlayIdle();
             OnAttackEnded?.Invoke();
-            Debug.Log("Finished Attack");
         }
     }
 }

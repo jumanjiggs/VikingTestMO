@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.Helpers;
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using Zenject;
 
@@ -16,11 +17,17 @@ namespace CodeBase.Player
         [Inject]private IInputService _inputService;
 
         private Vector3 _currentDirection;
+        private EventsHolder EventsHolder => EventsHolder.Instance;
 
-        private void Start()
-        {
+        private void Start() => 
             HideCursor();
-        }
+
+        private void OnEnable() =>
+            EventsHolder.PlayerDie += DisableMovement;
+        
+        private void OnDisable() => 
+            EventsHolder.PlayerDie -= DisableMovement;
+
         private void Update()
         {
             _currentDirection = GetAxis();
@@ -29,9 +36,7 @@ namespace CodeBase.Player
             RotateCamera();
 
             if (_currentDirection.x == 0 && _currentDirection.z == 0)
-            {
                 playerAnimator.PlayIdle();
-            }
             else
             {
                 if (_inputService.Axis.z > 0)
@@ -57,7 +62,13 @@ namespace CodeBase.Player
             transform.Rotate(Vector3.up, mouseX);
         }
         private void Move(Vector3 dir) => characterController.Move(dir * speed * Time.deltaTime);
+
         private static void HideCursor() =>
             Cursor.lockState = CursorLockMode.Locked;
+        private void DisableMovement()
+        {
+            characterController.enabled = false;
+            enabled = false;
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace CodeBase.Enemies
         public event Action PlayerExit;
         
         public Transform player;
-        public EnemyAnimator animator;
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag(Constants.Player))
