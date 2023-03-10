@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Infrastructure.Helpers;
 using UnityEngine;
 
@@ -5,13 +6,17 @@ namespace CodeBase.Enemies
 {
     public class EnemyAgro : MonoBehaviour
     {
+        public event Action PlayerEnter;
+        public event Action PlayerExit;
+        
         public Transform player;
-        public GeneralAnimator animator;
+        public EnemyAnimator animator;
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag(Constants.Player))
             {
                 player = other.gameObject.transform;
+                PlayerEnter?.Invoke();
             }
         }
         private void OnTriggerExit(Collider other)
@@ -19,7 +24,7 @@ namespace CodeBase.Enemies
             if (other.gameObject.CompareTag(Constants.Player))
             {
                 player = null;
-                animator.PlayIdle();
+                PlayerExit?.Invoke();
             }
         }
 

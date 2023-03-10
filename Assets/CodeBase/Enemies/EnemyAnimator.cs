@@ -1,24 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CodeBase.Enemies
 {
-    public class EnemyAnimator : GeneralAnimator
+    public class EnemyAnimator : MonoBehaviour
     {
-        [SerializeField] private EnemyController enemy;
-        public void Attack()
+        public event Action OnAttackEnded;
+        
+        private static readonly int Attack = Animator.StringToHash("Attack");
+        private static readonly int Speed = Animator.StringToHash("Speed");
+        
+        public Animator anim;
+
+        public void PlayIdle()
         {
-            _currentState = State.Idle;
-            if (_currentState == State.Idle)
-            {
-                _currentState = State.Other;
-                animator.SetTrigger(DoAttack);
-            }
+            anim.SetFloat(Speed, 0f, 0.1f, Time.deltaTime);
+        }
+
+        public void PlayRun()
+        {
+            anim.SetFloat(Speed, 1f,0.1f, Time.deltaTime);
+        }
+
+        public void PlayAttack()
+        {
+            anim.SetTrigger(Attack);
         }
         
         public void ResetAttack()
         {
-            enemy.OnAttackEnded();
             PlayIdle();
+            OnAttackEnded?.Invoke();
+            Debug.Log("Finished Attack");
         }
     }
 }

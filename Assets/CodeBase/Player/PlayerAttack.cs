@@ -11,7 +11,6 @@ namespace CodeBase.Player
             if(Input.GetMouseButtonDown(0) && !_isAttacking) 
                 animator.Attack();
         }
-        
         public void OnAttackEnded() => 
             _isAttacking = false;
     }

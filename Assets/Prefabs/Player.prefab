@@ -2205,7 +2205,7 @@ Animator:
   m_GameObject: {fileID: 6602031678873535842}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6fb2112ab95d4ae4b81de4d6d007c76d, type: 3}
-  m_Controller: {fileID: 9100000, guid: c6696f0d471b91145b7d0214ba280fdf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8df86d9e3c0a0ea4590f96db87813fe2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2228,8 +2228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2919838656f4ae5865841c520eda000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7969578330381128529}
   player: {fileID: 5961738356243538941}
+  animator: {fileID: 7969578330381128529}
 --- !u!1 &6622458733858781036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,7 +2892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68eebca9e5004119a8ad5a6de931013f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDirection: {x: 0, y: 0, z: 0}
   characterController: {fileID: 8026041655415417231}
   speed: 5
   mouseSens: 250
