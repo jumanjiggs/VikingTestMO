@@ -3005,7 +3005,7 @@ MonoBehaviour:
   animator: {fileID: 4973516923911021407}
   hpBar: {fileID: 0}
   currentHp: 0
-  maxHp: 2
+  maxHp: 20
 --- !u!54 &437889748589028305
 Rigidbody:
   m_ObjectHideFlags: 0
